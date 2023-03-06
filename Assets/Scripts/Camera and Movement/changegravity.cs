@@ -21,15 +21,18 @@ public class changegravity : MonoBehaviour
 
     [SerializeField] int loopcount;
 
-    [SerializeField] Color Material3;
-    [SerializeField] Color Material2;
-    [SerializeField] Color Material1;
-    [SerializeField] Color Material0;    
+    [SerializeField] float Material3;
+    [SerializeField] float Material2;
+    [SerializeField] float Material1;
+    [SerializeField] float Material0;    
 
     [SerializeField] float alphacount;
 
     [SerializeField] Transform Cameratransform;
 
+    [SerializeField] float Down;
+
+    [SerializeField] float Up;
 
     // Start is called before the first frame update
     void Start()
@@ -39,20 +42,10 @@ public class changegravity : MonoBehaviour
 
         if (CS.gameObject.activeSelf == true)
         {
-            Material0 = CS.WallMaterials[0].color;
-            Material1 = CS.WallMaterials[1].color;
-            Material2 = CS.WallMaterials[2].color;
-            Material3 = CS.WallMaterials[3].color;
-
-            Material0.a = 1;
-            Material1.a = 1;
-            Material2.a = 0;
-            Material3.a = 0;
-
-            CS.WallMaterials[0].color = Material0;
-            CS.WallMaterials[1].color = Material1;
-            CS.WallMaterials[2].color = Material2;
-            CS.WallMaterials[3].color = Material3;
+            CS.WallMaterials[0].SetFloat("_Visbility", 15);
+            CS.WallMaterials[1].SetFloat("_Visbility", 15);
+            CS.WallMaterials[2].SetFloat("_Visbility", 0);
+            CS.WallMaterials[3].SetFloat("_Visbility", 0);
         }
 
 
@@ -61,13 +54,13 @@ public class changegravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CS.gameObject.activeSelf == true)
+        /*if (CS.gameObject.activeSelf == true)
         {
             CS.WallMaterials[0].color = Material0;
             CS.WallMaterials[1].color = Material1;
             CS.WallMaterials[2].color = Material2;
             CS.WallMaterials[3].color = Material3;
-        }
+        }*/
 
         if (MT.Groundbool == true && MT.MoveAllow == 0)
         {
@@ -88,6 +81,8 @@ public class changegravity : MonoBehaviour
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
+                Down = 15f;
+                Up = 0f;
                 StartCoroutine(LeftRotate());
                 if (CS.gameObject.activeSelf == true)
                 {
@@ -102,6 +97,8 @@ public class changegravity : MonoBehaviour
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
+                Down = 15f;
+                Up = 0f;
                 StartCoroutine(RightRotate());
                 if (CS.gameObject.activeSelf == true)
                 {
@@ -121,10 +118,14 @@ public class changegravity : MonoBehaviour
     {
         if (CS.gameObject.activeSelf == true)
         {
-            Material2.a -= 0.0011111111111111f;
-            Material0.a += 0.0011111111111111f;
+            Down -= 0.0166666666666667f;
+            Up += 0.0166666666666667f;
         }
 
+        CS.WallMaterials[0].SetFloat("_Visbility", Up);
+        CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+        CS.WallMaterials[2].SetFloat("_Visbility", Down);
+        CS.WallMaterials[3].SetFloat("_Visbility", 0f);
         T.transform.Rotate((x - 0.1f), y, z, Space.World);
         
         if(Cameratransform != null)
@@ -145,8 +146,12 @@ public class changegravity : MonoBehaviour
 
             if (CS.gameObject.activeSelf == true)
             {
-                Material0.a = 1;
-                Material2.a = 0;
+                Down = 15f;
+                Up = 0f;
+                CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+                CS.WallMaterials[3].SetFloat("_Visbility", 0f);
             }
             MT.gameObject.layer = 0;
         }
@@ -158,9 +163,14 @@ public class changegravity : MonoBehaviour
 
         if (CS.gameObject.activeSelf == true)
         {
-            Material3.a -= 0.0011111111111111f;
-            Material1.a += 0.0011111111111111f;
+            Down -= 0.0166666666666667f;
+            Up += 0.0166666666666667f;
         }
+
+        CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+        CS.WallMaterials[1].SetFloat("_Visbility", Up);
+        CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+        CS.WallMaterials[3].SetFloat("_Visbility", Down);
 
         if (Cameratransform != null)
         {
@@ -180,8 +190,12 @@ public class changegravity : MonoBehaviour
 
             if (CS.gameObject.activeSelf == true)
             {
-                Material1.a = 1;
-                Material3.a = 0;
+                Down = 15f;
+                Up = 0f;
+                CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+                CS.WallMaterials[3].SetFloat("_Visbility", 0f);
             }
             MT.gameObject.layer = 0;
         }
@@ -207,10 +221,10 @@ public class changegravity : MonoBehaviour
                 CS.WallMaterials[4] = null;
             }
         }
-        Material0 = CS.WallMaterials[0].color;
+        /*Material0 = CS.WallMaterials[0].color;
         Material1 = CS.WallMaterials[1].color;
         Material2 = CS.WallMaterials[2].color;
-        Material3 = CS.WallMaterials[3].color;
+        Material3 = CS.WallMaterials[3].color;*/
 
     }
 
@@ -244,10 +258,10 @@ public class changegravity : MonoBehaviour
             }
             Debug.Log(ArrayNumber);
         }
-        Material0 = CS.WallMaterials[0].color;
+        /*Material0 = CS.WallMaterials[0].color;
         Material1 = CS.WallMaterials[1].color;
         Material2 = CS.WallMaterials[2].color;
-        Material3 = CS.WallMaterials[3].color;        
+        Material3 = CS.WallMaterials[3].color;   */     
         
     }
 }

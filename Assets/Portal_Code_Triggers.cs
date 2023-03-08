@@ -32,7 +32,7 @@ public class Portal_Code_Triggers : MonoBehaviour
         Triggered = false;
         if(Swapped == true)
         {
-            Triggered = false;
+            Swapped = false;
         }
     }
 }

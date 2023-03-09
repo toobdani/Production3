@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709855672835601450}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.090909, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.022, y: 0, z: 0}
+  m_LocalScale: {x: 0.031942282, y: 0.031942282, z: 0.031942282}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4258085755027204590}
@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 6397007532685468370}
   - component: {fileID: 3211273636289088040}
   - component: {fileID: 4818480770321294720}
-  - component: {fileID: 1861734588306041702}
   m_Layer: 0
   m_Name: Portal_A
   m_TagString: Untagged
@@ -57,16 +56,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827984724041862743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 0}
-  m_LocalScale: {x: 0.11, y: 4, z: 3}
+  m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
+  m_LocalPosition: {x: -10, y: -0.00000011432, z: 0}
+  m_LocalScale: {x: 31.306467, y: 31.306467, z: 31.306467}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5545642560387136154}
   - {fileID: 3668434593766857476}
   m_Father: {fileID: 8683801355965393234}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &3211273636289088040
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -74,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827984724041862743}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 5487461895805297368, guid: defc87e1f822248f78cd3b9e991b7faf, type: 3}
 --- !u!23 &4818480770321294720
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117,19 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1861734588306041702
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 827984724041862743}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1055116053284014835
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,9 +139,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055116053284014835}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.090909, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.70710653}
+  m_LocalPosition: {x: -0, y: 0, z: -0.019}
+  m_LocalScale: {x: 0.031942282, y: 0.031942282, z: 0.031942282}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6397007532685468370}
@@ -186,9 +172,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392956879065742869}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.090909, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.29038438, y: 0, z: 0}
+  m_LocalScale: {x: 0.031942282, y: 0.031942282, z: 0.031942282}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4258085755027204590}
@@ -205,8 +191,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.864294, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.3282957, y: 1, z: 1}
+  m_Center: {x: 8.408482, y: 0, z: 0}
 --- !u!114 &4805514312575555266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +257,7 @@ MonoBehaviour:
   Portal_B: {fileID: 709855672835601450}
   PCT_A: {fileID: 5873239143068943000}
   PCT_B: {fileID: 4805514312575555266}
+  Player: {fileID: 0}
 --- !u!1 &5003155685693698435
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,9 +283,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5003155685693698435}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.70710653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.031942282, y: 0.031942282, z: 0.031942282}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6397007532685468370}
@@ -315,8 +302,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.864294, y: 1, z: 1}
-  m_Center: {x: 8.932148, y: 0, z: 0}
+  m_Size: {x: 0.8448744, y: 1, z: 1}
+  m_Center: {x: 0.38727522, y: 0, z: 0}
 --- !u!114 &5873239143068943000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +329,6 @@ GameObject:
   - component: {fileID: 4258085755027204590}
   - component: {fileID: 5490602859467857886}
   - component: {fileID: 6112223764091726604}
-  - component: {fileID: 9104078148583957357}
   m_Layer: 0
   m_Name: Portal_B
   m_TagString: Untagged
@@ -359,7 +345,7 @@ Transform:
   m_GameObject: {fileID: 5468091686007232733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 0.11, y: 4, z: 3}
+  m_LocalScale: {x: 31.306467, y: 31.306467, z: 31.306467}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5356807437532205432}
@@ -374,7 +360,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5468091686007232733}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 5010614103932606241, guid: defc87e1f822248f78cd3b9e991b7faf, type: 3}
 --- !u!23 &6112223764091726604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -417,16 +403,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9104078148583957357
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5468091686007232733}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class changegravity : MonoBehaviour
@@ -20,6 +21,8 @@ public class changegravity : MonoBehaviour
     [SerializeField] movementTest MT;
 
     [SerializeField] int loopcount;
+
+    [SerializeField] bool portalRoom;
 
     [SerializeField] float Material3;
     [SerializeField] float Material2;
@@ -42,10 +45,20 @@ public class changegravity : MonoBehaviour
 
         if (CS.gameObject.activeSelf == true)
         {
-            CS.WallMaterials[0].SetFloat("_Visbility", 15);
-            CS.WallMaterials[1].SetFloat("_Visbility", 15);
-            CS.WallMaterials[2].SetFloat("_Visbility", 0);
-            CS.WallMaterials[3].SetFloat("_Visbility", 0);
+            if(portalRoom == false)
+            {
+                CS.WallMaterials[0].SetFloat("_Visbility", 15);
+                CS.WallMaterials[1].SetFloat("_Visbility", 15);
+                CS.WallMaterials[2].SetFloat("_Visbility", 0);
+                CS.WallMaterials[3].SetFloat("_Visbility", 0);
+            }
+            else
+            {
+                CS.WallMaterials[0].SetFloat("_Visbility", 15);
+                CS.WallMaterials[1].SetFloat("_Visbility", 15);
+                CS.WallMaterials[2].SetFloat("_Visbility", 1f);
+                CS.WallMaterials[3].SetFloat("_Visbility", 1f);
+            }
         }
 
 
@@ -74,15 +87,23 @@ public class changegravity : MonoBehaviour
 
                 //Physics.gravity = new Vector3(0, -5f, 0);
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetMouseButtonDown(0))
             {
                 MT.MoveAllow = 1;
                 MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
-                Down = 15f;
-                Up = 0f;
+                if(portalRoom == false)
+                {
+                    Down = 15f;
+                    Up = 0f;
+                }
+                else
+                {
+                    Down = 15f;
+                    Up = 1f;
+                }
                 StartCoroutine(LeftRotate());
                 if (CS.gameObject.activeSelf == true)
                 {
@@ -90,15 +111,23 @@ public class changegravity : MonoBehaviour
                 }
                 //Physics.gravity = new Vector3(0, 0, -5f);
             }
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetMouseButtonDown(1))
             {
                 MT.MoveAllow = 1;
                 MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
-                Down = 15f;
-                Up = 0f;
+                if (portalRoom == false)
+                {
+                    Down = 15f;
+                    Up = 0f;
+                }
+                else
+                {
+                    Down = 15f;
+                    Up = 1f;
+                }
                 StartCoroutine(RightRotate());
                 if (CS.gameObject.activeSelf == true)
                 {
@@ -118,16 +147,42 @@ public class changegravity : MonoBehaviour
     {
         if (CS.gameObject.activeSelf == true)
         {
-            Down -= 0.0166666666666667f;
-            Up += 0.0166666666666667f;
+            if(portalRoom == false)
+            {
+                Down -= 0.0166666666666667f;
+                Up += 0.0166666666666667f;
+            }
+            else
+            {
+                Down -= 0.0155555555555556f;
+                Up += 0.0155555555555556f;
+            }
         }
 
-        CS.WallMaterials[0].SetFloat("_Visbility", Up);
-        CS.WallMaterials[1].SetFloat("_Visbility", 15f);
-        CS.WallMaterials[2].SetFloat("_Visbility", Down);
-        CS.WallMaterials[3].SetFloat("_Visbility", 0f);
-        T.transform.Rotate((x - 0.1f), y, z, Space.World);
-        
+        if(portalRoom == false)
+        {
+            CS.WallMaterials[0].SetFloat("_Visbility", Up);
+            CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+            CS.WallMaterials[2].SetFloat("_Visbility", Down);
+            CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+        }
+        else
+        {
+            CS.WallMaterials[0].SetFloat("_Visbility", Up);
+            CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+            CS.WallMaterials[2].SetFloat("_Visbility", Down);
+            CS.WallMaterials[3].SetFloat("_Visbility", 1f);
+        }
+
+        if(portalRoom == false)
+        {
+            T.transform.Rotate((x - 0.1f), y, z, Space.World);
+        }
+        else
+        {
+            T.transform.Rotate((x + 0.1f), y, z, Space.World);
+        }
+
         if(Cameratransform != null)
         {
             Cameratransform.transform.Rotate((x + 0.1f), y, z, Space.World);
@@ -148,10 +203,20 @@ public class changegravity : MonoBehaviour
             {
                 Down = 15f;
                 Up = 0f;
-                CS.WallMaterials[0].SetFloat("_Visbility", 15f);
-                CS.WallMaterials[1].SetFloat("_Visbility", 15f);
-                CS.WallMaterials[2].SetFloat("_Visbility", 0f);
-                CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+                if (portalRoom == false)
+                {
+                    CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+                    CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+                }
+                else
+                {
+                    CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[2].SetFloat("_Visbility", 1f);
+                    CS.WallMaterials[3].SetFloat("_Visbility", 1f);
+                }
             }
             MT.gameObject.layer = 0;
         }
@@ -159,18 +224,43 @@ public class changegravity : MonoBehaviour
 
     IEnumerator RightRotate()
     {
-        T.transform.Rotate((x + 0.1f), y, z, Space.World);
+        if(portalRoom == false)
+        {
+            T.transform.Rotate((x + 0.1f), y, z, Space.World);
+        }
+        else
+        {
+            T.transform.Rotate((x - 0.1f), y, z, Space.World);
+        }
 
         if (CS.gameObject.activeSelf == true)
         {
-            Down -= 0.0166666666666667f;
-            Up += 0.0166666666666667f;
+            if(portalRoom == false)
+            {
+                Down -= 0.0166666666666667f;
+                Up += 0.0166666666666667f;
+            }
+            else
+            {
+                Down -= 0.0155555555555556f;
+                Up += 0.0155555555555556f;
+            }
         }
 
-        CS.WallMaterials[0].SetFloat("_Visbility", 15f);
-        CS.WallMaterials[1].SetFloat("_Visbility", Up);
-        CS.WallMaterials[2].SetFloat("_Visbility", 0f);
-        CS.WallMaterials[3].SetFloat("_Visbility", Down);
+        if(portalRoom == false)
+        {
+            CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+            CS.WallMaterials[1].SetFloat("_Visbility", Up);
+            CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+            CS.WallMaterials[3].SetFloat("_Visbility", Down);
+        }
+        else
+        {
+            CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+            CS.WallMaterials[1].SetFloat("_Visbility", Up);
+            CS.WallMaterials[2].SetFloat("_Visbility", 1f);
+            CS.WallMaterials[3].SetFloat("_Visbility", Down);
+        }
 
         if (Cameratransform != null)
         {
@@ -192,10 +282,20 @@ public class changegravity : MonoBehaviour
             {
                 Down = 15f;
                 Up = 0f;
-                CS.WallMaterials[0].SetFloat("_Visbility", 15f);
-                CS.WallMaterials[1].SetFloat("_Visbility", 15f);
-                CS.WallMaterials[2].SetFloat("_Visbility", 0f);
-                CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+                if(portalRoom == false)
+                {
+                    CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[2].SetFloat("_Visbility", 0f);
+                    CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+                }
+                else
+                {
+                    CS.WallMaterials[0].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[1].SetFloat("_Visbility", 15f);
+                    CS.WallMaterials[2].SetFloat("_Visbility", 1f);
+                    CS.WallMaterials[3].SetFloat("_Visbility", 1f);
+                }
             }
             MT.gameObject.layer = 0;
         }

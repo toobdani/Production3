@@ -14,6 +14,13 @@ public class movementTest : MonoBehaviour
     [SerializeField] float RayCastDistance;
     [SerializeField] float RayCastRadius;
 
+    [SerializeField] GameObject UpperStep;
+
+    [SerializeField] GameObject LowerStep;
+
+    [SerializeField] float StepHeight = 0.3f;
+    [SerializeField] float StepSmooth = 0.1f;
+
     public bool Groundbool;
 
     public int MoveAllow;
@@ -24,6 +31,8 @@ public class movementTest : MonoBehaviour
     {
         MyRigidbody = GetComponent<Rigidbody>();
         MyTransform = GetComponent<Transform>();
+
+        UpperStep.transform.localPosition = new Vector3(UpperStep.transform.localPosition.x, StepHeight, UpperStep.transform.localPosition.z);
     }
 
     // Update is called once per frame
@@ -49,6 +58,8 @@ public class movementTest : MonoBehaviour
             move();
             rotate();
         }
+
+        StepUp();
     }
 
     void move()
@@ -63,5 +74,18 @@ public class movementTest : MonoBehaviour
 
     void rotate()
     {
+    }
+
+    void StepUp()
+    {
+
+        RaycastHit LowerHit;
+
+        Debug.DrawRay(LowerStep.transform.localPosition, transform.TransformDirection(Vector3.forward) * 10f, Color.white);
+
+        if (Physics.Raycast(LowerStep.transform.position, transform.TransformDirection(Vector3.forward), out LowerHit, 0.1f))
+        {
+
+        }
     }
 }

@@ -37,9 +37,14 @@ public class changegravity : MonoBehaviour
 
     [SerializeField] float Up;
 
+    [SerializeField] GameObject Player;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        Player.transform.rotation = new Quaternion(0, 0, 0, 0);
+
         R = gameObject.GetComponent<Rigidbody>();
         x = T.transform.rotation.x;
 
@@ -94,7 +99,8 @@ public class changegravity : MonoBehaviour
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
-                if(portalRoom == false)
+
+                if (portalRoom == false)
                 {
                     Down = 15f;
                     Up = 0f;
@@ -118,6 +124,7 @@ public class changegravity : MonoBehaviour
                 MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 MT.gameObject.layer = 7;
                 loopcount = 0;
+
                 if (portalRoom == false)
                 {
                     Down = 15f;
@@ -203,6 +210,9 @@ public class changegravity : MonoBehaviour
             {
                 Down = 15f;
                 Up = 0f;
+                Player.transform.parent = null;
+                Player.transform.rotation = new Quaternion(0, 0, 0, 0);
+                Player.transform.SetParent(T);
                 if (portalRoom == false)
                 {
                     CS.WallMaterials[0].SetFloat("_Visbility", 15f);
@@ -277,12 +287,14 @@ public class changegravity : MonoBehaviour
         {
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             MT.MoveAllow = 2;
-
+            Player.transform.parent = null;
+            Player.transform.rotation = new Quaternion(0, 0, 0, 0);
+            Player.transform.SetParent(T);
             if (CS.gameObject.activeSelf == true)
             {
                 Down = 15f;
                 Up = 0f;
-                if(portalRoom == false)
+                if (portalRoom == false)
                 {
                     CS.WallMaterials[0].SetFloat("_Visbility", 15f);
                     CS.WallMaterials[1].SetFloat("_Visbility", 15f);

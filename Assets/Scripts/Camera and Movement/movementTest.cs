@@ -26,6 +26,10 @@ public class movementTest : MonoBehaviour
     public int MoveAllow;
 
     public Test_Scriptable_Object TSO;
+
+    public bool Triggered;
+
+    [SerializeField] bool Step;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,9 @@ public class movementTest : MonoBehaviour
     void Update()
     {
         RaycastHit GHit;
+
+        Debug.DrawRay(LowerStep.transform.position, transform.TransformDirection(Vector3.left) * 0.3f, Color.white);
+        Debug.DrawRay(UpperStep.transform.position, transform.TransformDirection(Vector3.left) * 0.4f, Color.white);
 
         Groundbool = Physics.SphereCast(transform.position, RayCastRadius ,Vector3.down, out GHit, RayCastDistance);
 
@@ -59,7 +66,10 @@ public class movementTest : MonoBehaviour
             rotate();
         }
 
-        StepUp();
+        if(Triggered == true)
+        {
+            StepUp();
+        }
     }
 
     void move()
@@ -79,13 +89,21 @@ public class movementTest : MonoBehaviour
     void StepUp()
     {
 
-        RaycastHit LowerHit;
+        //RaycastHit LowerHit;
 
-        Debug.DrawRay(LowerStep.transform.localPosition, transform.TransformDirection(Vector3.forward) * 10f, Color.white);
 
-        if (Physics.Raycast(LowerStep.transform.position, transform.TransformDirection(Vector3.forward), out LowerHit, 0.1f))
+        /*if (Physics.Raycast(LowerStep.transform.position, transform.TransformDirection(Vector3.left), out LowerHit, 0.3f))
         {
+            RaycastHit UpperHit;
+            if (!Physics.Raycast(UpperStep.transform.position, transform.TransformDirection(Vector3.left), out UpperHit, 0.4f))
+            {
+                MyRigidbody.position = new Vector3(MyRigidbody.position.x, (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+            }
+        }*/
 
-        }
+        if(MoveValues.x != 0 || MoveValues.z != 0)
+        {
+            MyRigidbody.position = new Vector3(MyRigidbody.position.x, (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+        }wd
     }
 }

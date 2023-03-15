@@ -21,6 +21,8 @@ public class movementTest : MonoBehaviour
     [SerializeField] float StepHeight = 0.3f;
     [SerializeField] float StepSmooth = 0.1f;
 
+    [SerializeField] float YRotation;
+
     public bool Groundbool;
 
     public int MoveAllow;
@@ -46,6 +48,8 @@ public class movementTest : MonoBehaviour
 
         Debug.DrawRay(LowerStep.transform.position, transform.TransformDirection(Vector3.left) * 0.3f, Color.white);
         Debug.DrawRay(UpperStep.transform.position, transform.TransformDirection(Vector3.left) * 0.4f, Color.white);
+
+
 
         Groundbool = Physics.SphereCast(transform.position, RayCastRadius ,Vector3.down, out GHit, RayCastDistance);
 
@@ -93,6 +97,8 @@ public class movementTest : MonoBehaviour
 
     void rotate()
     {
+        YRotation += MoveValues.z;
+        transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }
 
     void StepUp()

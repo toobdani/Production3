@@ -80,6 +80,15 @@ public class movementTest : MonoBehaviour
         MoveValues.z = MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
         MoveValues.y = MyRigidbody.velocity.y;
         MyRigidbody.velocity = MoveValues;
+
+        if(MoveValues.x != 0 || MoveValues.z != 0)
+        {
+            Step = true;
+        }
+        else
+        {
+            Step = false;
+        }
     }
 
     void rotate()
@@ -101,9 +110,9 @@ public class movementTest : MonoBehaviour
             }
         }*/
 
-        if(MoveValues.x != 0 || MoveValues.z != 0)
+        if (Step == true)
         {
-            MyRigidbody.position = new Vector3(MyRigidbody.position.x, (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
-        }wd
+            MyRigidbody.position = new Vector3((MyRigidbody.position.x + StepSmooth), (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+        }
     }
 }

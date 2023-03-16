@@ -14,9 +14,9 @@ public class movementTest : MonoBehaviour
     [SerializeField] float RayCastDistance;
     [SerializeField] float RayCastRadius;
 
-    [SerializeField] GameObject UpperStep;
+    //[SerializeField] GameObject UpperStep;
 
-    [SerializeField] GameObject LowerStep;
+    //[SerializeField] GameObject LowerStep;
 
     [SerializeField] float StepHeight = 0.3f;
     [SerializeField] float StepSmooth = 0.1f;
@@ -34,13 +34,15 @@ public class movementTest : MonoBehaviour
     [SerializeField] bool Step;
 
     [SerializeField] float RotateSpeed;
+
+    [SerializeField] bool RegularMove;
     // Start is called before the first frame update
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
         MyTransform = GetComponent<Transform>();
 
-        UpperStep.transform.localPosition = new Vector3(UpperStep.transform.localPosition.x, StepHeight, UpperStep.transform.localPosition.z);
+        //UpperStep.transform.localPosition = new Vector3(UpperStep.transform.localPosition.x, StepHeight, UpperStep.transform.localPosition.z);
     }
 
     // Update is called once per frame
@@ -48,8 +50,8 @@ public class movementTest : MonoBehaviour
     {
         RaycastHit GHit;
 
-        Debug.DrawRay(LowerStep.transform.position, transform.TransformDirection(Vector3.left) * 0.3f, Color.white);
-        Debug.DrawRay(UpperStep.transform.position, transform.TransformDirection(Vector3.left) * 0.4f, Color.white);
+        //Debug.DrawRay(LowerStep.transform.position, transform.TransformDirection(Vector3.left) * 0.3f, Color.white);
+        //Debug.DrawRay(UpperStep.transform.position, transform.TransformDirection(Vector3.left) * 0.4f, Color.white);
 
 
 
@@ -83,9 +85,18 @@ public class movementTest : MonoBehaviour
     {
         MoveValues = new Vector3();
 
-        MoveValues.x = -MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-        MoveValues.z = MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
-        MoveValues.y = MyRigidbody.velocity.y;
+        if(RegularMove == true)
+        {
+            MoveValues.x = -MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
+            MoveValues.z = MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+            MoveValues.y = MyRigidbody.velocity.y;
+        }
+        else
+        {
+            MoveValues.x = MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
+            MoveValues.z = -MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+            MoveValues.y = MyRigidbody.velocity.y;
+        }
         MyRigidbody.velocity = MoveValues;
 
         if(MoveValues.x != 0 || MoveValues.z != 0)
@@ -100,66 +111,139 @@ public class movementTest : MonoBehaviour
 
     void rotate()
     {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        switch (RegularMove)
         {
-            if (YRotation > -90 && YRotation < 90)
-            {
-                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+            case true:
+                {
+                    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                    {
+                        if (YRotation > -90 && YRotation < 90)
+                        {
+                            YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
 
-            }
-            else if(YRotation > 90 && Input.GetKey(KeyCode.D))
-            {
-                YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
-            }
+                        }
+                        else if (YRotation > 90 && Input.GetKey(KeyCode.D))
+                        {
+                            YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
+                        }
 
-            if (YRotation >= 90 && MoveValues.z < 0)
-            {
-                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
-            }
-            else if (YRotation <= 90 && MoveValues.z > 0)
-            {
-                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
-            }
+                        if (YRotation >= 90 && MoveValues.z < 0)
+                        {
+                            YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+                        }
+                        else if (YRotation <= 90 && MoveValues.z > 0)
+                        {
+                            YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+                        }
+                    }
+
+
+                    if (Input.GetKey(KeyCode.S))
+                    {
+                        if (YRotation > -180 && YRotation < 180)
+                        {
+                            if (YRotation < 0)
+                            {
+                                YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                            }
+                            else if (YRotation > 0)
+                            {
+                                YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            YRotation = 180;
+                        }
+                    }
+
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        if (YRotation != 0)
+                        {
+                            if (YRotation < 0)
+                            {
+                                YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                            }
+                            else if (YRotation > 0)
+                            {
+                                YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            YRotation = 0;
+                        }
+                    }
+                }
+                break;
+            case false:
+                {
+                    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                    {
+                        if (YRotation > -90 && YRotation < 90)
+                        {
+                            YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
+
+                        }
+                        else if (YRotation > 90 && Input.GetKey(KeyCode.D))
+                        {
+                            YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+                        }
+
+                        if (YRotation >= 90 && MoveValues.z < 0)
+                        {
+                            YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
+                        }
+                        else if (YRotation <= 90 && MoveValues.z > 0)
+                        {
+                            YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
+                        }
+                    }
+
+
+                    if (Input.GetKey(KeyCode.S))
+                    {
+                        if (YRotation > -180 && YRotation < 180)
+                        {
+                            if (YRotation < 0)
+                            {
+                                YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                            }
+                            else if (YRotation > 0)
+                            {
+                                YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            YRotation = 180;
+                        }
+                    }
+
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        if (YRotation != 0)
+                        {
+                            if (YRotation < 0)
+                            {
+                                YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                            }
+                            else if (YRotation > 0)
+                            {
+                                YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            YRotation = 0;
+                        }
+                    }
+                }
+                break;
         }
-
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            if (YRotation > -180 && YRotation < 180)
-            {
-                if(YRotation < 0)
-                {
-                    YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
-                }
-                else if(YRotation > 0)
-                {
-                    YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
-                }
-            }
-            else
-            {
-                YRotation = 180;
-            }
-        }
-
-        if(Input.GetKey(KeyCode.W))
-        {
-            if (YRotation != 0)
-            {
-                if (YRotation < 0)
-                {
-                    YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
-                }
-                else if (YRotation > 0)
-                {
-                    YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
-                }
-            }
-            else
-            {
-                YRotation = 0;
-            }
-        }
+            
+      
 
         transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }

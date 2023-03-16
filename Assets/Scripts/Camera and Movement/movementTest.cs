@@ -32,6 +32,8 @@ public class movementTest : MonoBehaviour
     public bool Triggered;
 
     [SerializeField] bool Step;
+
+    [SerializeField] float RotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +62,7 @@ public class movementTest : MonoBehaviour
                 MoveAllow = 0;
             }
         }
+
     }
 
     private void FixedUpdate()
@@ -97,7 +100,67 @@ public class movementTest : MonoBehaviour
 
     void rotate()
     {
-        YRotation += MoveValues.z;
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        {
+            if (YRotation > -90 && YRotation < 90)
+            {
+                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+
+            }
+            else if(YRotation > 90 && Input.GetKey(KeyCode.D))
+            {
+                YRotation += RotateSpeed * -MoveValues.z * Time.deltaTime;
+            }
+
+            if (YRotation >= 90 && MoveValues.z < 0)
+            {
+                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+            }
+            else if (YRotation <= 90 && MoveValues.z > 0)
+            {
+                YRotation += RotateSpeed * MoveValues.z * Time.deltaTime;
+            }
+        }
+
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (YRotation > -180 && YRotation < 180)
+            {
+                if(YRotation < 0)
+                {
+                    YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                }
+                else if(YRotation > 0)
+                {
+                    YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                }
+            }
+            else
+            {
+                YRotation = 180;
+            }
+        }
+
+        if(Input.GetKey(KeyCode.W))
+        {
+            if (YRotation != 0)
+            {
+                if (YRotation < 0)
+                {
+                    YRotation += RotateSpeed * -MoveValues.x * Time.deltaTime;
+                }
+                else if (YRotation > 0)
+                {
+                    YRotation += RotateSpeed * MoveValues.x * Time.deltaTime;
+                }
+            }
+            else
+            {
+                YRotation = 0;
+            }
+        }
+
         transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }
 

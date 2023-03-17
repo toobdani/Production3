@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FinalStageRotate : MonoBehaviour
 {
+    [SerializeField] public List<RotatePosition> CameraLocation;
+
+    [SerializeField] public List<string> CameraPositionName;
 
     [SerializeField] movementTest MT;
 
@@ -18,6 +21,14 @@ public class FinalStageRotate : MonoBehaviour
 
 
     [SerializeField] string RDirection;
+
+    [SerializeField] GameObject Camera;
+
+    [SerializeField] int CLocationCount;
+
+    [SerializeField] float tempx;
+
+    [SerializeField] float tempz;
 
     /*
     RotateModifiers[0] = XLeft 
@@ -36,18 +47,34 @@ public class FinalStageRotate : MonoBehaviour
         y = T.transform.rotation.y;
         z = T.transform.rotation.z;
 
-        RotationPlan("Left");
+        Camera.transform.localPosition = CameraLocation[CLocationCount].CPosition;
+        Camera.transform.localRotation = CameraLocation[CLocationCount].CRotation;
+
+        //RotationPlan("Backward");
+
+        StartCoroutine(TimedRotation());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+    }
+
+    IEnumerator TimedRotation()
+    {
+        RotationPlan("Backward");
+        yield return new WaitForSeconds(10f);
+        //Camera.transform.localPosition = CameraLocation[CLocationCount].CPosition;
+        //Camera.transform.localRotation = CameraLocation[CLocationCount].CRotation;
+        RotationPlan("Left");
+        yield return new WaitForSeconds(10f);
+        RotationPlan("Right");
 
     }
 
     void RotationPlan(string Direction)
     {
-        switch(Direction)
+        /*switch(Direction)
         {
             case "Left":
                 {
@@ -66,7 +93,17 @@ public class FinalStageRotate : MonoBehaviour
 
                 }
                 break;
-        }
+        }*/
+
+        MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
+        MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        MT.gameObject.layer = 7;
+        x = T.transform.rotation.x;
+        y = T.transform.rotation.y;
+        z = T.transform.rotation.z;
+
+        RDirection = Direction;
+        StartCoroutine(Rotate());
     }
 
     IEnumerator Rotate()
@@ -82,13 +119,13 @@ public class FinalStageRotate : MonoBehaviour
         else
         {
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
-            MT.MoveAllow = 2;        
+            MT.MoveAllow = 2;
             MT.gameObject.layer = 0;
             //Direction = null;
             x = T.transform.rotation.x;
             y = T.transform.rotation.y;
             z = T.transform.rotation.z;
-
+            loopcount = 0;
         }
     }
 

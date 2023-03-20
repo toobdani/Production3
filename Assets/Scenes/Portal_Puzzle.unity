@@ -629,7 +629,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 88bb16ca43f7dc942a797fe48d172f0a, type: 2}
+  - {fileID: 2100000, guid: 556d7d330e61eef40afc5c6f86d6060f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -697,13 +697,16 @@ MonoBehaviour:
   MyTransform: {fileID: 0}
   RayCastDistance: 1
   RayCastRadius: 2.89
-  UpperStep: {fileID: 1154174160}
-  LowerStep: {fileID: 1260262062}
   StepHeight: 0.3
   StepSmooth: 0.1
+  YRotation: 0
   Groundbool: 0
   MoveAllow: 0
   TSO: {fileID: 11400000, guid: c7165154a073a4f4ba1e7b6b8336b875, type: 2}
+  Triggered: 0
+  Step: 0
+  RotateSpeed: 0
+  RegularMove: 1
 --- !u!1 &369284798 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1047108173416921511, guid: defc87e1f822248f78cd3b9e991b7faf, type: 3}

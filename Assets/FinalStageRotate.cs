@@ -115,7 +115,7 @@ public class FinalStageRotate : MonoBehaviour
 
         loopcount++;
         yield return new WaitForSeconds(0.001f);
-        if (loopcount != 900)
+        if (loopcount != 90)
         {
             StartCoroutine(Rotate());
         }
@@ -138,12 +138,12 @@ public class FinalStageRotate : MonoBehaviour
         {
             case "Left":
                 {
-                    Modify -= 0.1f;
+                    Modify -= 1f;
                 }
                 break;
             case "Right":
                 {
-                    Modify += 0.1f;
+                    Modify += 1f;
                 }
                 break;
             default:
@@ -162,12 +162,12 @@ public class FinalStageRotate : MonoBehaviour
         {
             case "Forward":
                 {
-                    Modify -= 0.1f;
+                    Modify -= 1f;
                 }
                 break;
             case "Backward":
                 {
-                    Modify += 0.1f;
+                    Modify += 1f;
                 }
                 break;
             default:

@@ -156,19 +156,19 @@ public class changegravity : MonoBehaviour
         {
             if(portalRoom == false)
             {
-                //Down -= 0.0166666666666667f;
-                //Up += 0.0166666666666667f;                
+                Down -= 0.0166666666666667f;
+                Up += 0.0166666666666667f;                
 
-                Down -= 0.1666666666666667f;
-                Up += 0.1666666666666667f;
+                //Down -= 0.1666666666666667f;
+                //Up += 0.1666666666666667f;
             }
             else
             {
-                //Down -= 0.0155555555555556f;
-                //Up += 0.0155555555555556f;                
+                Down -= 0.0155555555555556f;
+                Up += 0.0155555555555556f;                
                 
-                Down -= 0.1555555555555556f;
-                Up += 0.1555555555555556f;
+                //Down -= 0.1555555555555556f;
+                //Up += 0.1555555555555556f;
             }
         }
 
@@ -189,24 +189,24 @@ public class changegravity : MonoBehaviour
 
         if(portalRoom == false)
         {
-            //T.transform.Rotate((x - 0.1f), y, z, Space.World);
-            T.transform.Rotate((x - 1f), y, z, Space.World);
+            T.transform.Rotate((x - 0.1f), y, z, Space.World);
+            //T.transform.Rotate((x - 1f), y, z, Space.World);
         }
         else
         {
-            //T.transform.Rotate((x + 0.1f), y, z, Space.World);
-            T.transform.Rotate((x + 1f), y, z, Space.World);
+            T.transform.Rotate((x + 0.1f), y, z, Space.World);
+            //T.transform.Rotate((x + 1f), y, z, Space.World);
         }
 
         if(Cameratransform != null)
         {
-            //Cameratransform.transform.Rotate((x + 0.1f), y, z, Space.World);
-            Cameratransform.transform.Rotate((x + 1f), y, z, Space.World);
+            Cameratransform.transform.Rotate((x + 0.1f), y, z, Space.World);
+            //Cameratransform.transform.Rotate((x + 1f), y, z, Space.World);
         }
 
         loopcount++;
         yield return new WaitForSeconds(0.001f);
-        if(loopcount != 90)
+        if(loopcount != 900)
         {
             StartCoroutine(LeftRotate());
         }
@@ -245,32 +245,32 @@ public class changegravity : MonoBehaviour
     {
         if(portalRoom == false)
         {
-            //T.transform.Rotate((x + 0.1f), y, z, Space.World);
-            T.transform.Rotate((x + 1f), y, z, Space.World);
+            T.transform.Rotate((x + 0.1f), y, z, Space.World);
+            //T.transform.Rotate((x + 1f), y, z, Space.World);
         }
         else
         {
-            //T.transform.Rotate((x - 0.1f), y, z, Space.World);
-            T.transform.Rotate((x - 1f), y, z, Space.World);
+            T.transform.Rotate((x - 0.1f), y, z, Space.World);
+            //T.transform.Rotate((x - 1f), y, z, Space.World);
         }
 
         if (CS.gameObject.activeSelf == true)
         {
             if(portalRoom == false)
             {
-                //Down -= 0.0166666666666667f;
-                //Up += 0.0166666666666667f;
+                Down -= 0.0166666666666667f;
+                Up += 0.0166666666666667f;
 
-                Down -= 0.1666666666666667f;
-                Up += 0.1666666666666667f;
+                //Down -= 0.1666666666666667f;
+                //Up += 0.1666666666666667f;
             }
             else
             {
-                //Down -= 0.0155555555555556f;
-                //Up += 0.0155555555555556f;                
+                Down -= 0.0155555555555556f;
+                Up += 0.0155555555555556f;                
 
-                Down -= 0.1555555555555556f;
-                Up += 0.1555555555555556f;
+                //Down -= 0.1555555555555556f;
+                //Up += 0.1555555555555556f;
             }
         }
 
@@ -291,13 +291,13 @@ public class changegravity : MonoBehaviour
 
         if (Cameratransform != null)
         {
-            //Cameratransform.transform.Rotate((x - 0.1f), y, z, Space.World);
-            Cameratransform.transform.Rotate((x - 1f), y, z, Space.World);
+            Cameratransform.transform.Rotate((x - 0.1f), y, z, Space.World);
+            //Cameratransform.transform.Rotate((x - 1f), y, z, Space.World);
         }
 
         loopcount++;
         yield return new WaitForSeconds(0.001f);
-        if (loopcount != 90)
+        if (loopcount != 900)
         {
             StartCoroutine(RightRotate());
         }

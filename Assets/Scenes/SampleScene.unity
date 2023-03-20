@@ -994,8 +994,6 @@ MonoBehaviour:
   MyTransform: {fileID: 0}
   RayCastDistance: 1
   RayCastRadius: 2.89
-  UpperStep: {fileID: 1664241641}
-  LowerStep: {fileID: 1309499286}
   StepHeight: -0.3
   StepSmooth: 0.1
   YRotation: 0
@@ -1005,6 +1003,7 @@ MonoBehaviour:
   Triggered: 0
   Step: 0
   RotateSpeed: 10
+  RegularMove: 1
 --- !u!1 &248465259
 GameObject:
   m_ObjectHideFlags: 0

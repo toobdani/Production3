@@ -96,9 +96,9 @@ public class FinalStageRotate : MonoBehaviour
                 break;
         }*/
 
-        MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
-        MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        MT.gameObject.layer = 7;
+        //MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
+        //MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        //MT.gameObject.layer = 7;
         //x = T.transform.rotation.x;
         //y = T.transform.rotation.y;
         //z = T.transform.rotation.z;
@@ -121,9 +121,9 @@ public class FinalStageRotate : MonoBehaviour
         }
         else
         {
-            MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
-            MT.MoveAllow = 2;
-            MT.gameObject.layer = 0;
+            //MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+            //MT.MoveAllow = 2;
+            //MT.gameObject.layer = 0;
             //Direction = null;
             //x = T.transform.rotation.x;
             //y = T.transform.rotation.y;

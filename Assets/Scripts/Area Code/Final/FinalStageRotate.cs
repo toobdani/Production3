@@ -15,9 +15,9 @@ public class FinalStageRotate : MonoBehaviour
     [SerializeField] GameObject Player;
 
     public Transform T;
-    float x;
-    float y;
-    float z;
+    [SerializeField]float x;
+    [SerializeField] float y;
+    [SerializeField] float z;
 
 
     [SerializeField] string RDirection;
@@ -43,9 +43,9 @@ public class FinalStageRotate : MonoBehaviour
     {
         T = gameObject.GetComponent<Transform>();
         Player.transform.rotation = new Quaternion(0, 0, 0, 0);
-        x = T.transform.rotation.x;
-        y = T.transform.rotation.y;
-        z = T.transform.rotation.z;
+        x = 0;
+        y = 0;
+        z = 0;
 
         Camera.transform.localPosition = CameraLocation[CLocationCount].CPosition;
         Camera.transform.localRotation = CameraLocation[CLocationCount].CRotation;
@@ -62,13 +62,14 @@ public class FinalStageRotate : MonoBehaviour
 
     IEnumerator TimedRotation()
     {
-        RotationPlan("Backward");
-        yield return new WaitForSeconds(10f);
-        //Camera.transform.localPosition = CameraLocation[CLocationCount].CPosition;
-        //Camera.transform.localRotation = CameraLocation[CLocationCount].CRotation;
-        RotationPlan("Left");
-        yield return new WaitForSeconds(10f);
-        RotationPlan("Right");
+        RotationPlan(CameraPositionName[CLocationCount]);
+        yield return new WaitForSeconds(1f);
+        Debug.Log("GO");
+        CLocationCount++;
+        Camera.transform.localPosition = CameraLocation[CLocationCount].CPosition;
+        Camera.transform.localRotation = CameraLocation[CLocationCount].CRotation;
+        yield return new WaitForSeconds(7f);
+        StartCoroutine(TimedRotation());
 
     }
 
@@ -95,15 +96,17 @@ public class FinalStageRotate : MonoBehaviour
                 break;
         }*/
 
-        MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
-        MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        MT.gameObject.layer = 7;
-        x = T.transform.rotation.x;
-        y = T.transform.rotation.y;
-        z = T.transform.rotation.z;
+        //MT.MyRigidbody.velocity = new Vector3(0, 0, 0);
+        //MT.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        //MT.gameObject.layer = 7;
+        //x = T.transform.rotation.x;
+        //y = T.transform.rotation.y;
+        //z = T.transform.rotation.z;
 
         RDirection = Direction;
         StartCoroutine(Rotate());
+
+        Direction = null;
     }
 
     IEnumerator Rotate()
@@ -118,13 +121,13 @@ public class FinalStageRotate : MonoBehaviour
         }
         else
         {
-            MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
-            MT.MoveAllow = 2;
-            MT.gameObject.layer = 0;
+            //MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+            //MT.MoveAllow = 2;
+            //MT.gameObject.layer = 0;
             //Direction = null;
-            x = T.transform.rotation.x;
-            y = T.transform.rotation.y;
-            z = T.transform.rotation.z;
+            //x = T.transform.rotation.x;
+            //y = T.transform.rotation.y;
+            //z = T.transform.rotation.z;
             loopcount = 0;
         }
     }
@@ -145,11 +148,12 @@ public class FinalStageRotate : MonoBehaviour
                 break;
             default:
                 {
-                    x = T.transform.rotation.x;
+                    Modify = x;
                 }
                 break;
         }
         return (Modify);
+
     }
 
     float ZRotate(float Modify)
@@ -168,7 +172,7 @@ public class FinalStageRotate : MonoBehaviour
                 break;
             default:
                 {
-                    z = T.transform.rotation.z;
+                    z = Modify;
                 }
                 break;
         }

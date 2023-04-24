@@ -10,10 +10,15 @@ public class LoadingCount : ScriptableObject
 
     public int Going;
 
+    public int PieceNumber;
+
+    public bool[] Pieces;
+
+    public bool[] LobbyPieces;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

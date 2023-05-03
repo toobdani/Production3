@@ -37,6 +37,9 @@ public class movementTest : MonoBehaviour
     [SerializeField] float RotateSpeed;
 
     [SerializeField] bool RegularMove;
+
+    public float XRotation;
+    public float ZRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,13 +58,13 @@ public class movementTest : MonoBehaviour
         //Debug.DrawRay(UpperStep.transform.position, transform.TransformDirection(Vector3.left) * 0.4f, Color.white);
 
 
-
         Groundbool = Physics.SphereCast(transform.position, RayCastRadius ,Vector3.down, out GHit, RayCastDistance);
 
         if(MoveAllow == 2)
         {
             if(Groundbool)
             {
+                //transform.Rotate(0, 0, 0);
                 MoveAllow = 0;
             }
         }
@@ -263,8 +266,8 @@ public class movementTest : MonoBehaviour
         }
             
       
+        MyRigidbody.rotation = Quaternion.Euler(0, YRotation, 0); 
 
-        transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }
 
     void StepUp()

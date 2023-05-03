@@ -214,6 +214,7 @@ public class changegravity : MonoBehaviour
         {
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             MT.MoveAllow = 2;
+            MT.XRotation += 90;
 
             if (CS.gameObject.activeSelf == true)
             {
@@ -305,6 +306,7 @@ public class changegravity : MonoBehaviour
         {
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             MT.MoveAllow = 2;
+            MT.XRotation -= 90;
             Player.transform.parent = null;
             Player.transform.rotation = new Quaternion(0, 0, 0, 0);
             Player.transform.SetParent(T);

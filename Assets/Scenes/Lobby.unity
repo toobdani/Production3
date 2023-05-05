@@ -908,6 +908,8 @@ MonoBehaviour:
   Step: 0
   RotateSpeed: 10
   RegularMove: 1
+  XRotation: 0
+  ZRotation: 0
 --- !u!1 &248465259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1161,10 @@ PrefabInstance:
       value: Area2
       objectReference: {fileID: 0}
     - target: {fileID: 1323338757704007346, guid: 600534117b50f2645a5ebb989fea4140, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058687110058746849, guid: 600534117b50f2645a5ebb989fea4140, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

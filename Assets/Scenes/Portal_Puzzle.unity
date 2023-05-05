@@ -763,8 +763,10 @@ MonoBehaviour:
   TSO: {fileID: 11400000, guid: c7165154a073a4f4ba1e7b6b8336b875, type: 2}
   Triggered: 0
   Step: 0
-  RotateSpeed: 0
+  RotateSpeed: 10
   RegularMove: 1
+  XRotation: 0
+  ZRotation: 0
 --- !u!1001 &363009761
 PrefabInstance:
   m_ObjectHideFlags: 0

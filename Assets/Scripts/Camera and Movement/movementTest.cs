@@ -290,4 +290,12 @@ public class movementTest : MonoBehaviour
             MyRigidbody.position = new Vector3((MyRigidbody.position.x + StepSmooth), (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
         }
     }
+
+    //Added by Matthew
+    public bool returnGroundbool()
+    {
+      return Groundbool;
+    }
 }
+
+

@@ -7,6 +7,8 @@ public class Animation_State_Controler : MonoBehaviour
     public movementTest PlayerHitbox;
     Animator animator;
 
+    [SerializeField] bool Lobby;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,19 +52,22 @@ public class Animation_State_Controler : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if(Lobby == false)
         {
-            animator.SetBool("roomRotate", true);
-        }
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            {
+                animator.SetBool("roomRotate", true);
+            }
 
-        if (PlayerHitbox.returnGroundbool())
-        {
-            animator.SetBool("onGround", true);
-        }
-        
-        else
-        {
-            animator.SetBool("onGround", false);
+            if (PlayerHitbox.MoveAllow == 0)
+            {
+                animator.SetBool("onGround", true);
+            }
+
+            else
+            {
+                animator.SetBool("onGround", false);
+            }
         }
     }
 }

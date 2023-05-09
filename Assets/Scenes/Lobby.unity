@@ -1236,6 +1236,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4548322860305427326, guid: 600534117b50f2645a5ebb989fea4140, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 66.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5058687110058746849, guid: 600534117b50f2645a5ebb989fea4140, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4318,6 +4322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHitbox: {fileID: 243801604}
+  Lobby: 1
 --- !u!1001 &1436622795
 PrefabInstance:
   m_ObjectHideFlags: 0

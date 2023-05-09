@@ -12,6 +12,8 @@ public class changegravity : MonoBehaviour
     float y;
     float z;
 
+    float playerx;
+
     [SerializeField] CameraSwap CS;
 
     [SerializeField] GameObject[] Temp;
@@ -39,6 +41,7 @@ public class changegravity : MonoBehaviour
 
     [SerializeField] GameObject Player;
 
+    [SerializeField] FirstRoomStairs FRS;
 
     // Start is called before the first frame update
     void Start()
@@ -115,6 +118,10 @@ public class changegravity : MonoBehaviour
                 {
                     MoveArrayup();
                 }
+                if(FRS != null)
+                {
+                    FRS.MoveMaterialUp();
+                }
                 //Physics.gravity = new Vector3(0, 0, -5f);
             }
             if (Input.GetMouseButtonDown(1))
@@ -139,6 +146,10 @@ public class changegravity : MonoBehaviour
                 if (CS.gameObject.activeSelf == true)
                 {
                     MoveArrayDown();
+                }
+                if (FRS != null)
+                {
+                    FRS.MoveMaterialDown();
                 }
                 //Physics.gravity = new Vector3(0, 0, 5f);
             }
@@ -197,6 +208,8 @@ public class changegravity : MonoBehaviour
             T.transform.Rotate((x + 0.1f), y, z, Space.World);
             //T.transform.Rotate((x + 1f), y, z, Space.World);
         }
+
+        Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
 
         if(Cameratransform != null)
         {
@@ -289,6 +302,8 @@ public class changegravity : MonoBehaviour
             CS.WallMaterials[2].SetFloat("_Visbility", 1f);
             CS.WallMaterials[3].SetFloat("_Visbility", Down);
         }
+
+        Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
 
         if (Cameratransform != null)
         {

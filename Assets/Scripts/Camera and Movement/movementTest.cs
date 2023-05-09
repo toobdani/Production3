@@ -291,11 +291,6 @@ public class movementTest : MonoBehaviour
         }
     }
 
-    //Added by Matthew
-    public bool returnGroundbool()
-    {
-      return Groundbool;
-    }
 }
 
 

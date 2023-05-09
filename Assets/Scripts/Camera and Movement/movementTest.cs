@@ -40,6 +40,10 @@ public class movementTest : MonoBehaviour
 
     public float XRotation;
     public float ZRotation;
+
+    [SerializeField] Vector3 Customgravity;
+
+    public bool Clipping;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +95,8 @@ public class movementTest : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MyRigidbody.velocity += Customgravity * Time.fixedDeltaTime;
+
         if (MoveAllow == 0)
         {
             move();
@@ -99,7 +105,10 @@ public class movementTest : MonoBehaviour
 
         if(Triggered == true)
         {
-            StepUp();
+            if(Clipping == false)
+            {
+                StepUp();
+            }
         }
     }
 

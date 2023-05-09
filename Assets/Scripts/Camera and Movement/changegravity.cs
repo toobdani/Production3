@@ -201,15 +201,15 @@ public class changegravity : MonoBehaviour
         if(portalRoom == false)
         {
             T.transform.Rotate((x - 0.1f), y, z, Space.World);
+            Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
             //T.transform.Rotate((x - 1f), y, z, Space.World);
         }
         else
         {
             T.transform.Rotate((x + 0.1f), y, z, Space.World);
+            Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
             //T.transform.Rotate((x + 1f), y, z, Space.World);
         }
-
-        Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
 
         if(Cameratransform != null)
         {
@@ -228,7 +228,7 @@ public class changegravity : MonoBehaviour
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             MT.MoveAllow = 2;
             MT.XRotation += 90;
-
+            FRS.ChangeStairsLeft();
             if (CS.gameObject.activeSelf == true)
             {
                 Down = 15f;
@@ -260,11 +260,13 @@ public class changegravity : MonoBehaviour
         if(portalRoom == false)
         {
             T.transform.Rotate((x + 0.1f), y, z, Space.World);
+            Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
             //T.transform.Rotate((x + 1f), y, z, Space.World);
         }
         else
         {
             T.transform.Rotate((x - 0.1f), y, z, Space.World);
+            Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
             //T.transform.Rotate((x - 1f), y, z, Space.World);
         }
 
@@ -303,7 +305,6 @@ public class changegravity : MonoBehaviour
             CS.WallMaterials[3].SetFloat("_Visbility", Down);
         }
 
-        Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
 
         if (Cameratransform != null)
         {
@@ -325,6 +326,7 @@ public class changegravity : MonoBehaviour
             Player.transform.parent = null;
             Player.transform.rotation = new Quaternion(0, 0, 0, 0);
             Player.transform.SetParent(T);
+            FRS.ChangeStairsLeft();
             if (CS.gameObject.activeSelf == true)
             {
                 Down = 15f;

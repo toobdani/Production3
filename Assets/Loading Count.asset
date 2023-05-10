@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Loading Count
   m_EditorClassIdentifier: 
   Lobby: 0
-  Going: 0
+  Going: 7
   PieceNumber: 0
   Pieces: 000000
   LobbyPieces: 000000

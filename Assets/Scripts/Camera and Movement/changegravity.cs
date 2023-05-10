@@ -189,6 +189,15 @@ public class changegravity : MonoBehaviour
             CS.WallMaterials[1].SetFloat("_Visbility", 15f);
             CS.WallMaterials[2].SetFloat("_Visbility", Down);
             CS.WallMaterials[3].SetFloat("_Visbility", 0f);
+
+            if (FRS != null)
+            {
+                FRS.StairMaterials[0].SetFloat("_Visbility", Up);
+                FRS.StairMaterials[1].SetFloat("_Visbility", 15f);
+                FRS.StairMaterials[2].SetFloat("_Visbility", Down);
+                FRS.StairMaterials[3].SetFloat("_Visbility", 1f);
+
+            }
         }
         else
         {
@@ -228,7 +237,10 @@ public class changegravity : MonoBehaviour
             MT.MyRigidbody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             MT.MoveAllow = 2;
             MT.XRotation += 90;
-            FRS.ChangeStairsLeft();
+            if (FRS != null)
+            {
+                FRS.ChangeStairsLeft();
+            }
             if (CS.gameObject.activeSelf == true)
             {
                 Down = 15f;
@@ -296,6 +308,16 @@ public class changegravity : MonoBehaviour
             CS.WallMaterials[1].SetFloat("_Visbility", Up);
             CS.WallMaterials[2].SetFloat("_Visbility", 0f);
             CS.WallMaterials[3].SetFloat("_Visbility", Down);
+
+
+            if (FRS != null)
+            {
+                FRS.StairMaterials[0].SetFloat("_Visbility", Up);
+                FRS.StairMaterials[1].SetFloat("_Visbility", 15f);
+                FRS.StairMaterials[2].SetFloat("_Visbility", Down);
+                FRS.StairMaterials[3].SetFloat("_Visbility", 1f);
+
+            }
         }
         else
         {
@@ -326,7 +348,10 @@ public class changegravity : MonoBehaviour
             Player.transform.parent = null;
             Player.transform.rotation = new Quaternion(0, 0, 0, 0);
             Player.transform.SetParent(T);
-            FRS.ChangeStairsLeft();
+            if (FRS != null)
+            {
+                FRS.ChangeStairsLeft();
+            }
             if (CS.gameObject.activeSelf == true)
             {
                 Down = 15f;

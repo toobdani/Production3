@@ -10,14 +10,14 @@ public class FirstRoomStairs : MonoBehaviour
 
     [SerializeField] Material[] MaterialTemp;
 
-    [SerializeField] Material[] StairMaterials;
+    public Material[] StairMaterials;
     // Start is called before the first frame update
     void Start()
     {
         StairMaterials[0].SetFloat("_Visbility", 15f);
         StairMaterials[1].SetFloat("_Visbility", 15f);
-        StairMaterials[2].SetFloat("_Visbility", 1f);
-        StairMaterials[3].SetFloat("_Visbility", 1f);
+        StairMaterials[2].SetFloat("_Visbility", 0f);
+        StairMaterials[3].SetFloat("_Visbility", 0f);
     }
 
     // Update is called once per frame
@@ -83,8 +83,8 @@ public class FirstRoomStairs : MonoBehaviour
     {
         StairMaterials[0].SetFloat("_Visbility", 15f);
         StairMaterials[1].SetFloat("_Visbility", 15f);
-        StairMaterials[2].SetFloat("_Visbility", 1f);
-        StairMaterials[3].SetFloat("_Visbility", 1f);
+        StairMaterials[2].SetFloat("_Visbility", 0f);
+        StairMaterials[3].SetFloat("_Visbility", 0f);
     }
 
     public void ChangeStairsRight()

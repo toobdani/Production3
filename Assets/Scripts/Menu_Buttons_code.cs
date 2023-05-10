@@ -27,7 +27,7 @@ public class Menu_Buttons_code : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(6);
     }
 
     public void Credits()

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
+    [SerializeField] int SceneMove;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,6 @@ public class Respawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneMove);
     }
 }

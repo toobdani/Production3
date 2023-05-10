@@ -44,6 +44,8 @@ public class movementTest : MonoBehaviour
     [SerializeField] Vector3 Customgravity;
 
     public bool Clipping;
+
+    [SerializeField] bool FirstRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -296,7 +298,19 @@ public class movementTest : MonoBehaviour
 
         if (Step == true)
         {
-            MyRigidbody.position = new Vector3((MyRigidbody.position.x + StepSmooth), (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+            switch (FirstRoom)
+            {
+                case false:
+                    {
+                        MyRigidbody.position = new Vector3((MyRigidbody.position.x + StepSmooth), (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+                    }
+                    break;
+                case true:
+                    {
+                        MyRigidbody.position = new Vector3(MyRigidbody.position.x, (MyRigidbody.position.y + StepSmooth), MyRigidbody.position.z);
+                    }
+                    break;
+            }
         }
     }
 

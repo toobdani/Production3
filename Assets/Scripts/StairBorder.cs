@@ -49,9 +49,9 @@ public class StairBorder : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag != "Player" && MT.MoveAllow != 0) return;
         Border.SetActive(true);
-    }
+    }*/
 }

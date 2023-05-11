@@ -227,7 +227,7 @@ public class changegravity : MonoBehaviour
         }
 
         loopcount++;
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(0.0001f);
         if(loopcount != 900)
         {
             StartCoroutine(LeftRotate());
@@ -335,7 +335,7 @@ public class changegravity : MonoBehaviour
         }
 
         loopcount++;
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(0.0001f);
         if (loopcount != 900)
         {
             StartCoroutine(RightRotate());

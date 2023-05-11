@@ -9,6 +9,8 @@ public class Animation_State_Controler : MonoBehaviour
 
     [SerializeField] bool Lobby;
 
+    [SerializeField] GameObject Footsteps;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,24 +26,29 @@ public class Animation_State_Controler : MonoBehaviour
         if (Input.GetKey("w"))
         {
             animator.SetBool("isWalking", true);
+            Footsteps.SetActive(true);
         }
 
         else if (Input.GetKey("a"))
         {
             animator.SetBool("isWalking", true);
+            Footsteps.SetActive(true);
         }
         else if (Input.GetKey("s"))
         {
             animator.SetBool("isWalking", true);
+            Footsteps.SetActive(true);
         }
         else if (Input.GetKey("d"))
         {
             animator.SetBool("isWalking", true);
+            Footsteps.SetActive(true);
         }
 
         else
         {
             animator.SetBool("isWalking", false);
+            Footsteps.SetActive(false);
         }
 
         if (animator.GetBool("roomRotate"))

@@ -11,7 +11,7 @@ public class OpeningCutscene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        OpeningAnimations[0].SetBool("Appear", true);
     }
 
     // Update is called once per frame
@@ -21,12 +21,12 @@ public class OpeningCutscene : MonoBehaviour
         {
             switch (ClickCount)
             {
-                case 4:
+                case 3:
                     {
                         SceneManager.LoadScene(0);
                     }
                     break;
-                case 3:
+                case 2:
                     {
                         OpeningAnimations[3].SetBool("Appear", true);
                         OpeningAnimations[2].SetBool("Fade", true);
@@ -36,24 +36,19 @@ public class OpeningCutscene : MonoBehaviour
 
                     }
                     break;
-                case 2:
+                case 1:
                     {
                         OpeningAnimations[2].SetBool("Appear", true);
                         ClickCount++;
                     }
                     break;
-                case 1:
+                case 0:
                     {
                         OpeningAnimations[1].SetBool("Appear", true);
                         ClickCount++;
                     }
                     break;
-                case 0:
-                    {
-                        OpeningAnimations[0].SetBool("Appear", true);
-                        ClickCount++;
-                    }
-                    break;          
+   
             }
         }
     }

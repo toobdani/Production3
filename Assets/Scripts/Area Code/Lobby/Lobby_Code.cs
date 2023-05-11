@@ -9,6 +9,16 @@ public class Lobby_Code : MonoBehaviour
     [SerializeField] GameObject[] Doorways;
 
     [SerializeField] GameObject[] Pieces;
+
+    [SerializeField] GameObject Player;
+
+    [SerializeField] GameObject[] ticking;
+
+    [SerializeField] AudioSource Music;
+
+    [SerializeField] float[] Musicvolume;
+    [SerializeField] float[] Musicpitch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,33 +31,10 @@ public class Lobby_Code : MonoBehaviour
 
         Pieces[0].SetActive(false);
         Pieces[1].SetActive(false);
+        Pieces[2].SetActive(false);
 
-        if(LC.LobbyPieces[0] == true)
-        {
-            Pieces[0].SetActive(true);
-        }
-        else
-        {
-            Pieces[0].SetActive(false);
-        }
+        StartChecks();
 
-        if(LC.LobbyPieces[1] == true)
-        {
-            Pieces[1].SetActive(true);
-        }
-        else
-        {
-            Pieces[1].SetActive(false);
-        }
-
-        if (LC.LobbyPieces[2] == true)
-        {
-            Pieces[2].SetActive(true);
-        }
-        else
-        {
-            Pieces[2].SetActive(false);
-        }
     }
 
     // Update is called once per frame
@@ -93,5 +80,52 @@ public class Lobby_Code : MonoBehaviour
             Pieces[2].SetActive(true);
             LC.LobbyPieces[2] = true;
         }
+    }
+
+    void StartChecks()
+    {
+        if (LC.LobbyPieces[0] == true)
+        {
+            Pieces[0].SetActive(true);
+        }
+        else
+        {
+            Pieces[0].SetActive(false);
+        }
+
+        if (LC.LobbyPieces[1] == true)
+        {
+            Pieces[1].SetActive(true);
+        }
+        else
+        {
+            Pieces[1].SetActive(false);
+        }
+
+        if (LC.LobbyPieces[2] == true)
+        {
+            Pieces[2].SetActive(true);
+        }
+        else
+        {
+            Pieces[2].SetActive(false);
+        }
+
+        if(LC.Pieces[0] == false)
+        {
+            Player.transform.position = new Vector3(27, -49.5999985f, 21.8999996f);
+            Music.volume = Musicvolume[0];
+            Music.pitch = Musicpitch[0];
+            ticking[0].SetActive(false);
+        }
+
+        if(LC.Pieces[1] == true && LC.Pieces[2] == false)
+        {
+            Player.transform.position = new Vector3(-161.699997f, -49.5999985f, -19.8999996f);
+            Music.volume = Musicvolume[1];
+            Music.pitch = Musicpitch[1];
+            ticking[0].SetActive(true);
+        }
+
     }
 }

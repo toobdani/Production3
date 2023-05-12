@@ -43,6 +43,14 @@ public class changegravity : MonoBehaviour
 
     [SerializeField] FirstRoomStairs FRS;
 
+    [SerializeField] float RotateSpeed;
+
+    [SerializeField] float LoopCountAmount;
+
+    [SerializeField] float RotateAmount;
+
+    [SerializeField] float ChangeTrasnparent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +77,16 @@ public class changegravity : MonoBehaviour
             }
         }
 
+        RotateAmount = 90 / LoopCountAmount;
 
+        if(portalRoom == false)
+        {
+            ChangeTrasnparent = 15 / LoopCountAmount;
+        }
+        else
+        {
+            ChangeTrasnparent = 14 / LoopCountAmount;
+        }
     }
 
     // Update is called once per frame
@@ -163,27 +180,11 @@ public class changegravity : MonoBehaviour
 
     IEnumerator LeftRotate()
     {
-        if (CS.gameObject.activeSelf == true)
-        {
-            if(portalRoom == false)
-            {
-                Down -= 0.0166666666666667f;
-                Up += 0.0166666666666667f;                
 
-                //Down -= 0.1666666666666667f;
-                //Up += 0.1666666666666667f;
-            }
-            else
-            {
-                Down -= 0.0155555555555556f;
-                Up += 0.0155555555555556f;                
-                
-                //Down -= 0.1555555555555556f;
-                //Up += 0.1555555555555556f;
-            }
-        }
+        Down -= ChangeTrasnparent;
+        Up += ChangeTrasnparent;
 
-        if(portalRoom == false)
+        if (portalRoom == false)
         {
             CS.WallMaterials[0].SetFloat("_Visbility", Up);
             CS.WallMaterials[1].SetFloat("_Visbility", 15f);
@@ -207,28 +208,20 @@ public class changegravity : MonoBehaviour
             CS.WallMaterials[3].SetFloat("_Visbility", 1f);
         }
 
-        if(portalRoom == false)
-        {
-            T.transform.Rotate((x - 0.1f), y, z, Space.World);
-            Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
+
+            T.transform.Rotate((x - RotateAmount), y, z, Space.World);
+            Player.transform.Rotate((playerx + RotateAmount), y, z, Space.World);
             //T.transform.Rotate((x - 1f), y, z, Space.World);
-        }
-        else
-        {
-            T.transform.Rotate((x + 0.1f), y, z, Space.World);
-            Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
-            //T.transform.Rotate((x + 1f), y, z, Space.World);
-        }
 
         if(Cameratransform != null)
         {
-            Cameratransform.transform.Rotate((x + 0.1f), y, z, Space.World);
+            Cameratransform.transform.Rotate((x + RotateAmount), y, z, Space.World);
             //Cameratransform.transform.Rotate((x + 1f), y, z, Space.World);
         }
 
         loopcount++;
-        yield return new WaitForSeconds(0.0001f);
-        if(loopcount != 900)
+        yield return new WaitForSeconds(RotateSpeed);
+        if(loopcount != LoopCountAmount)
         {
             StartCoroutine(LeftRotate());
         }
@@ -269,40 +262,16 @@ public class changegravity : MonoBehaviour
 
     IEnumerator RightRotate()
     {
-        if(portalRoom == false)
-        {
-            T.transform.Rotate((x + 0.1f), y, z, Space.World);
-            Player.transform.Rotate((playerx - 0.1f), y, z, Space.World);
+
+            T.transform.Rotate((x + RotateAmount), y, z, Space.World);
+            Player.transform.Rotate((playerx - RotateAmount), y, z, Space.World);
             //T.transform.Rotate((x + 1f), y, z, Space.World);
-        }
-        else
-        {
-            T.transform.Rotate((x - 0.1f), y, z, Space.World);
-            Player.transform.Rotate((playerx + 0.1f), y, z, Space.World);
-            //T.transform.Rotate((x - 1f), y, z, Space.World);
-        }
+        
 
-        if (CS.gameObject.activeSelf == true)
-        {
-            if(portalRoom == false)
-            {
-                Down -= 0.0166666666666667f;
-                Up += 0.0166666666666667f;
+        Down -= ChangeTrasnparent;
+        Up += ChangeTrasnparent;
 
-                //Down -= 0.1666666666666667f;
-                //Up += 0.1666666666666667f;
-            }
-            else
-            {
-                Down -= 0.0155555555555556f;
-                Up += 0.0155555555555556f;                
-
-                //Down -= 0.1555555555555556f;
-                //Up += 0.1555555555555556f;
-            }
-        }
-
-        if(portalRoom == false)
+        if (portalRoom == false)
         {
             CS.WallMaterials[0].SetFloat("_Visbility", 15f);
             CS.WallMaterials[1].SetFloat("_Visbility", Up);
@@ -330,13 +299,13 @@ public class changegravity : MonoBehaviour
 
         if (Cameratransform != null)
         {
-            Cameratransform.transform.Rotate((x - 0.1f), y, z, Space.World);
+            Cameratransform.transform.Rotate((x - RotateAmount), y, z, Space.World);
             //Cameratransform.transform.Rotate((x - 1f), y, z, Space.World);
         }
 
         loopcount++;
-        yield return new WaitForSeconds(0.0001f);
-        if (loopcount != 900)
+        yield return new WaitForSeconds(RotateSpeed);
+        if (loopcount != LoopCountAmount)
         {
             StartCoroutine(RightRotate());
         }

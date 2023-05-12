@@ -19,6 +19,12 @@ public class Lobby_Code : MonoBehaviour
     [SerializeField] float[] Musicvolume;
     [SerializeField] float[] Musicpitch;
 
+    [SerializeField] GameObject[] StageLights;
+
+    [SerializeField] GameObject CentreLight;
+
+    [SerializeField] GameObject[] Notes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +39,10 @@ public class Lobby_Code : MonoBehaviour
         Pieces[1].SetActive(false);
         Pieces[2].SetActive(false);
 
+        StageLights[0].SetActive(false);
+        StageLights[1].SetActive(false);
+        CentreLight.SetActive(false);
+
         StartChecks();
 
     }
@@ -40,8 +50,11 @@ public class Lobby_Code : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(LC.Pieces[1] == true)
+        if (LC.Pieces[0] == true)
+        {
+            CentreLight.SetActive(true);
+        }
+        if (LC.Pieces[1] == true)
         {
             Doorways[2].SetActive(false);
             Doorways[1].SetActive(true);
@@ -57,22 +70,22 @@ public class Lobby_Code : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(LC.Pieces[0] == true)
+        if(LC.Pieces[0] == true && LC.Pieces[1] == false)
         {
             Pieces[0].SetActive(true);
             Doorways[2].SetActive(false);
             Doorways[1].SetActive(false);
             Doorways[0].SetActive(true);
-
+            StageLights[0].SetActive(true);
             LC.LobbyPieces[0] = true;
         }
-        if(LC.Pieces[1] == true)
+        if(LC.Pieces[1] == true && LC.Pieces[2] == false)
         {
             Pieces[1].SetActive(true);
             Doorways[3].SetActive(false);
             Doorways[5].SetActive(false);
             Doorways[4].SetActive(true);
-
+            StageLights[1].SetActive(true);
             LC.LobbyPieces[1] = true;
         }
         if(LC.Pieces[2] == true)
@@ -117,6 +130,9 @@ public class Lobby_Code : MonoBehaviour
             Music.volume = Musicvolume[0];
             Music.pitch = Musicpitch[0];
             ticking[0].SetActive(false);
+            ticking[1].SetActive(false);
+            Notes[0].SetActive(true);
+            Notes[1].SetActive(false);
         }
 
         if(LC.Pieces[1] == true && LC.Pieces[2] == false)
@@ -125,6 +141,21 @@ public class Lobby_Code : MonoBehaviour
             Music.volume = Musicvolume[1];
             Music.pitch = Musicpitch[1];
             ticking[0].SetActive(true);
+            ticking[1].SetActive(false);
+            Notes[0].SetActive(false);
+            Notes[1].SetActive(false);
+        }
+
+        if(LC.Pieces[2] == true)
+        {
+            Player.transform.position = new Vector3(-168.800003f, -49.5999985f, 58.4000015f);
+            Music.volume = Musicvolume[2];
+            Music.pitch = Musicpitch[2];
+            ticking[0].SetActive(false);
+            ticking[1].SetActive(true);
+            ticking[2].SetActive(true);
+            Notes[0].SetActive(false);
+            Notes[1].SetActive(true);
         }
 
     }

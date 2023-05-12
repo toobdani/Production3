@@ -8,6 +8,7 @@ public class Note_Code : MonoBehaviour
     [SerializeField] GameObject NoteUI;
 
     [SerializeField] movementTest MT;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,7 @@ public class Note_Code : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 NoteUI.SetActive(false);
-                MT.MoveAllow = 0;
-                Destroy(gameObject);
+                StartCoroutine(WaittoMove());
             }
         }
     }
@@ -32,5 +32,12 @@ public class Note_Code : MonoBehaviour
     {
         NoteUI.SetActive(true);
         MT.MoveAllow = 1;
+    }
+
+    IEnumerator WaittoMove()
+    {
+        yield return new WaitForSeconds(0.1f);
+        MT.MoveAllow = 0;
+        Destroy(gameObject);
     }
 }
